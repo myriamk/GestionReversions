@@ -16,7 +16,7 @@ module.exports = function(app) {
             var queryPage = req.query.page;
             var pg = (queryPage ? (queryPage > 0 ? queryPage : 1 ) : 1 );
         
-            /// On détermine le nb de pages total
+            /// On détermine le nb de pages totales
             var NbLgnsRecordset = recordsets[1][0].CountLigns;       
             var NbPgs = Math.floor(NbLgnsRecordset/NbLgnPerPg) + ((NbLgnsRecordset % NbLgnPerPg) != 0 ? 1 : 0);
             console.log(colors.magenta(NbLgnsRecordset + ' | ' + NbPgs)); //TEST
