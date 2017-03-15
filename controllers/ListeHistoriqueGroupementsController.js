@@ -4,7 +4,7 @@ var NbLgnPerPg = 100;
 
 module.exports = function(app) {
 
-    app.get('/HistoGrp', function(req, res) {
+      app.get('/HistoGrp', function(req, res) {
 
         //if(req.xhr) {  console.log('Ajax'); } else { console.log('Pas ajax'); } //TEST
 
