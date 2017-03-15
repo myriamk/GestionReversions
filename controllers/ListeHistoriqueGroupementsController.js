@@ -8,7 +8,7 @@ module.exports = function(app) {
 
         //if(req.xhr) {  console.log('Ajax'); } else { console.log('Pas ajax'); } //TEST
 
-        /// 1.On va chercher la data avec le module mssql, 2.La passer en paramètres ds le render ci-dessous, 3.Intégrer la data dans le .ejs  
+        /// 1.On va chercher la data avec le module   mssql, 2.La passer en paramètres ds le render ci-dessous, 3.Intégrer la data dans le .ejs  
         getData(function(recordsets) {
 
             //console.log(colors.yellow('N° de page : ' + req.query.page)); //TEST
