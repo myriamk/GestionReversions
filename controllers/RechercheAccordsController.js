@@ -38,7 +38,7 @@ module.exports = function(app) {
                 var newRecordset = [];
                 newRecordset = FormatData(recordsets[0]); /// <-- Fonction pour formater les données comme on veut pour affichage ds vue
                 //console.log(colors.bgWhite.magenta(JSON.stringify(Newrecordset))); //TEST
-                res.render('RechercheAccords', { dataAccords: newRecordset, listeTypeTaux: recordsets[1] });
+                res.render('RechercheAccords', { dataAccords: newRecordset, listeTypeTaux: recordsets[1], etbId: null });
             })
 
         }
