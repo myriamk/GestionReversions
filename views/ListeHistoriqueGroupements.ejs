@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <title>Historique des groupements</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700" rel="stylesheet" type="text/css">
+        <link href="/assets/styles/style_reversion.css" rel="stylesheet">
+        <link href="/assets/styles/sidenav.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"><!-- pour datepickers -->
+        <link href="/assets/styles/jquery/jquery-ui.datepicker.theme.css" rel="stylesheet"><!-- pour datepickers -->
+
+        <script src="https://use.fontawesome.com/68984c879a.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><!-- pour datepickers --> 
+        <script src="/assets/scripts/datepicker-fr.js"></script>
+        <script src="/assets/scripts/sidenav.js"></script>
+        <script src="/assets/scripts/highlight.js"></script>
+        <script src="/assets/scripts/ListeHistoriqueGroupe.js"></script>
+    </head>
+    <body>
+
+        <%include partials/menu.ejs %>
+
+        <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+        <div id="main" class="HistoriqueGrps"> 
+
+
+            <div class="bandeauHaut">
+                <div>Historique des groupements</div>
+                <div>
+                    <div>
+                    <form id="FiltresHistoGrp">
+                        Filtres :
+                        <input class="SearchFieldBandeau" id="EtablFilter" name="Etablissement" placeholder="Tous les établissements" type="text">
+                        <input class="SearchFieldBandeau" id="GrpFilter" name="Groupe" placeholder="Tous les groupes" type="text">
+                        <select class="SearchFieldBandeau" id="HelpDateFilter" name="MotDate" disabled="disabled">
+                            <option value="where">le</option>
+                            <option value="from">à partir du</option>
+                            <option value="upto">jusqu'au</option>
+                            <option value="between">entre le</option>
+                        </select>
+                        <input type="text" class="SearchFieldBandeau" id="DatepickerStart" name="DateDebut" readonly="readonly" placeholder="Date">
+                        <i class="fa fa-times-circle" id="DeleteDatepickerStart" ></i>
+                        <span id="TxtSpanDates" class="Hidden">et le</span>
+                        <input type="text" class="SearchFieldBandeau Hidden" id="DatepickerEnd" name="DateFin" readonly="readonly" placeholder="Date">
+                        <button type="button" class="ValidSearch"><i class="fa fa-search"></i></button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blocContenu">       <!--<div id="TESTAVIRER" style="position: absolute; font-weight: bold; font-size:18px; color:red; z-index:1000000 "><%= numtotalpg %> page</div>-->
+
+                <div class="MskTopListe">
+                    <i class="fa fa-arrow-circle-left left Hidden"></i>
+                    <span class="NumPage" data-maxnbpages="<%= numtotalpg %>">Page <span id="NumPg"><%= numpg %></span></span>
+                    <i class="fa fa-arrow-circle-right right"></i>      
+                </div>
+
+                <div class="FdListe HistoGroupes">
+                    <div class="Enteteliste Lgn Lgn_HG">
+                        <div>Etablissement</div>
+                        <div>Action</div>
+                        <div>Groupe</div>
+                        <div>Date</div>
+                    </div>
+                    
+
+                    <% dataGrp.forEach(function(item) { %>
+                                
+                    <div class="Lgn Lgn_HG">
+                        <div>
+                            <div class="NomEtb"><%= item.NomEtablissement %></div>
+                            <div class="Small"><%= item.Adresse1 %> <%= item.Adresse2 %> <%= item.Adresse3 %></div>
+                            <div class="Small"><%= item.Cp %> - <%= item.Ville %></div>
+                        </div>
+                        <div>
+                            <% if(item.TypeAppartenance == 1) { %>a intégré le groupe<% } 
+                             else if(item.TypeAppartenance == 2) { %>a fait partie du groupe
+                            <% } %>
+                        </div>
+                        <div class="NomGrp"><%= item.Libelle_Groupement %></div>
+                        <div>
+                            <% if(item.TypeAppartenance == 1) { %>depuis le <%= dateFormat(item.DateEntree, 'dd/mm/yyyy') %> <% } 
+                             else if(item.TypeAppartenance == 2) { %>entre le <%= dateFormat(item.DateEntree, 'dd/mm/yyyy') %> et le <%= dateFormat(item.DateSortie, 'dd/mm/yyyy') %>
+                            <% } %>
+                        </div>
+                    </div>
+                                   
+                    <% }) %>
+
+           
+
+
+                </div>
+            <div>
+
+
+        </div>
+
+    </body>
+</html>

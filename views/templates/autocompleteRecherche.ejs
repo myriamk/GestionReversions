@@ -1,0 +1,38 @@
+<% if(typeof propositionsRech_Grp !== 'undefined') { %>
+
+    <% propositionsRech_Grp.forEach(function(item) { %>
+    <!-- pour les groupes -->
+    <div class="Lgn AC">
+        <div><i class="fa fa-chevron-circle-right"></i></div>
+        <div class="AC_NomGrp" data-tohighlight="true"><a href="/RechercheAccords?AccRevID=<%= item.AccordReversionId %>"><%= item.LibelleGroupement %></a></div>
+        <div><i class="fa fa-chevron-circle-right Disabled"></i></div>
+        <div class="AC_NomEtbl Disabled">-</div>
+        <div class="AC_dates">Du <%= dateFormat(item.PeriodeDebut, 'dd/mm/yyyy') %> au <%= dateFormat(item.PeriodeFin, 'dd/mm/yyyy') %></div>
+    </div>
+    <% }); %>
+
+<% } %>
+
+
+<% if(typeof propositionsRech_Etb !== 'undefined') { %>
+
+    <% propositionsRech_Etb.forEach(function(item) { %>
+    <!-- pour les établissements -->
+    <div class="Lgn AC">
+        <div><i class="fa fa-chevron-circle-right Disabled"></i></div>
+        <div class="AC_NomGrp Disabled"><span><%= item.LibelleGroupement %></span></div>
+        <div><i class="fa fa-chevron-circle-right"></i></div>
+        <div class="AC_NomEtbl" data-tohighlight="true">
+            <div class="AC_RS"><a href="/RechercheAccords?AccRevID=<%= item.AccordReversionId %><%= (item.GroupementId != 96 ? "&EtbId=" + item.EtablissementId : "")%>"><%= item.RaisonSociale %></a> (<%= item.CC %>)</div>
+            <div class="AC_AdresseEtb">
+                <div><%= item.Ad1 %></div>
+                <div><%= item.Ad2 %></div>
+                <div><%= item.Ad3 %></div>
+                <div><span><%= item.CP %></span> <span><%= item.Ville %></span></div>
+            </div>
+        </div>
+        <div class="AC_dates">Du <%= dateFormat(item.PeriodeDebut, 'dd/mm/yyyy') %> au <%= dateFormat(item.PeriodeFin, 'dd/mm/yyyy') %></div>
+    </div>
+    <% }); %>
+
+<% } %>
