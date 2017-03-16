@@ -11,7 +11,8 @@ app.locals.dateFormat = dateFormat;
 //set up template engine
 app.set('view engine', 'ejs');
 
-//static files
+//static files 
+
 app.use(express.static('./public'));
 
 
