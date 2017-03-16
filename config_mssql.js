@@ -4,4 +4,4 @@ exports.config = {
         password: 'fwadmin',
         server: 'SERVSQL\\CAHPPSQL',
         database: 'GestionCahpp'
-    };   
+    };     
